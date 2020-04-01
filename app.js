@@ -2,7 +2,9 @@
 const express = require('express');
 
 const app = express();
-const port = 4000;
+//we need to change the port to be a variable so that heroku can set it for us
+//if there is a port val then do that or (if that isnt there) do 4000
+let port = process.env.PORT || 4000;
 
 //the function recieves two arguements, the path and the arrow function
 //req = request res = response
