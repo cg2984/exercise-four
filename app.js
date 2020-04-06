@@ -1,5 +1,18 @@
 //adding express to the app.js file and returns an object that is an instacne of the package express
 const express = require('express');
+//require firebase
+const firebase = require("firebase/app");
+//firebase config object
+//this is pretty insecure since API key is in the code base 
+const firebaseConfig = {
+  apiKey: "AIzaSyD5LYwEAkwKVTXpa5A2KZTAmOoMSV6LE7A",
+  authDomain: "exercise-four-635e8.firebaseapp.com",
+  databaseURL: "https://exercise-four-635e8.firebaseio.com",
+  projectId: "exercise-four-635e8",
+  storageBucket: "exercise-four-635e8.appspot.com",
+  messagingSenderId: "230618305046",
+  appId: "1:230618305046:web:052c01d35773fc40bd9b37"
+};
 
 const app = express();
 //we need to change the port to be a variable so that heroku can set it for us
