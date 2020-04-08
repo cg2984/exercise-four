@@ -20,10 +20,14 @@ firebase.initializeApp(firebaseConfig);
 //initializing firestore database
 const db = firebase.firestore();
 
+//collection
+const blogposts = db.collection("blogposts");
+
+//array to put the posts in
 let blogpostsArray = [];
 
-//getting blog post
-const blogposts = db.collection('blogposts').get()
+//getting all blog posts
+const allBlogposts = blogposts.get()
 //this is a promise
 	.then((querySnapshot) => {
 		querySnapshot.forEach((doc) => {
@@ -38,6 +42,28 @@ const blogposts = db.collection('blogposts').get()
 	.catch(function (error) {
 		console.log("Error:", error)
 	});
+
+//getting single blog post
+//the id that you are going to get 
+const documentToGet = "sample-post";
+const singleBlogPost = blogposts.doc(documentToGet)
+	.get()
+	.then(function(doc){
+		//.exsists is a firestore thing
+		if(doc.exists){
+		console.log("document data:", doc.data());
+		} else{
+		//doc data will be undefined
+		console.log("no such document");
+		}
+	})
+	.catch(function (error) {
+		console.log("Error:", error)
+	});
+
+const indexRoute = require("./routes/index.js");
+const postRoute = require("./routes/post.js");
+const createRoute = require("./routes/createArticle.js");
 
 const app = express();
 //we need to change the port to be a variable so that heroku can set it for us
